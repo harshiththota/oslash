@@ -1,9 +1,9 @@
 {
-  "name": "nestjs-template",
-  "version": "0.0.3",
-  "description": "Rokket Labs' NestJS template for all backend projects",
-  "author": "Rokket Labs <tomas@rokketlabs.com>",
-  "private": true,
+  "name": "oslash-assignment",
+  "version": "0.0.1",
+  "description": "OSlash assignment for backend",
+  "author": "thota.harshit@gmail.com",
+  "private": false,
   "license": "MIT",
   "engines": {
     "node": "14.16.0"

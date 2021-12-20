@@ -39,15 +39,6 @@ type Metadata {
   count: Float
 }
 
-type Token {
-  accessToken: String!
-}
-
-type File {
-  url: ID!
-  success: Boolean!
-}
-
 type Query {
   allUsers: [User!]!
   User(id: String!): User!
@@ -67,10 +58,6 @@ type Mutation {
   createItem(input: ItemInput!): Item!
   updateItem(input: UpdateItemInput!, id: String!): Item!
   deleteItem(id: String!): Item!
-  login(input: Login!): Token!
-  signUp(input: UserInput!): User!
-  uploadFile(file: Upload!): File!
-  removeFile(fileUrl: String!): Boolean!
 }
 
 input UpdateUserInput {
@@ -102,18 +89,3 @@ input UpdateItemInput {
   price: Float
   description: String
 }
-
-input Login {
-  email: String!
-  password: String!
-}
-
-input UserInput {
-  email: String!
-  password: String!
-  firstName: String
-  lastName: String
-}
-
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
