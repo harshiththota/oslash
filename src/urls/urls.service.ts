@@ -26,6 +26,14 @@ export class UrlsService {
     return this.urlModel.findOne({ _id: id })
   }
 
+  async findByUser(id: string): Promise<Url> {
+    return this.urlModel.find({ user: id }).exec()
+  }
+
+  async deleteById(id: string): Promise<Url> {
+    return this.urlModel.delete({ _id: id }).save()
+  }
+
   async validate(input: UrlInput): Promise<Url | null> {
     // const { email, password } = input
     // const user = await this.userModel.findOne({ email })

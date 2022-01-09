@@ -10,5 +10,17 @@ export class UrlInput {
   tags?: [string]
 }
 
+export class UrlModel {
+  user: User
+  shortLink: string
+  description?: string
+  url: string
+  tags?: [string]
+}
+
+export class UrlDelete {
+  id: string
+}
+
 @InputType()
 export class UpdateUrlInput extends PartialType(UrlInput) {}

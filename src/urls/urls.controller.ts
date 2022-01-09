@@ -1,8 +1,8 @@
-import { Body,Controller, Get, HttpException, HttpStatus, Post, UseGuards } from '@nestjs/common'
+import { Controller, Delete, Get, HttpException, HttpStatus, Post, Query, Req,UseGuards } from '@nestjs/common'
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 
-import { UrlInput } from './urls.input'
+import { UrlDelete, UrlInput, UrlModel } from './urls.input'
 import { Url } from './urls.model'
 import { UrlsService } from './urls.service'
 
@@ -12,11 +12,32 @@ export class UrlsController {
 
   @UseGuards(JwtAuthGuard)
   @Post('create')
-  async createUrl(@Body() input: UrlInput): Promise<Url> {
-		console.log('input : ', input)
+  async createUrl(@Query() input: UrlInput, @Req() req: any): Promise<Url> {
+    const { user } = req
 
-    throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
+     const data: UrlModel = { ...input, user: user.id }
 
-    // return this.urlService.create(input)
+     console.log('data : ', data)
+
+    // throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
+    return this.urlService.create(data)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('list')
+  async getUrls(@Req() req: any): Promise<Url> {
+    const { user } = req
+
+    return this.urlService.findByUser(user.id)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete')
+  async delete(@Query() input: UrlDelete, @Req() req: any): Promise<Url> {
+     const { id } = input
+
+     return this.urlService.findOne(id)
+    // throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED)
+    // return this.urlService.findByUser(id)
   }
 }

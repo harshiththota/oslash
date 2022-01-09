@@ -19,7 +19,7 @@ export class Url {
   @prop()
   url: string
 
-  @prop()
+  @prop({ ref: () => User })
   user: User
 
 }
